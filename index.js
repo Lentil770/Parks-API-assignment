@@ -1,5 +1,4 @@
-/* i need to add the multiple states...
-and fix the state to work, now its just getting random states...*/
+/* i need to add the multiple states...*/
 
 let base_url = 'https://developer.nps.gov/api/v1/parks'
 let api_key = 'F9Ba0rhkkg9k8ybEjblnHenIACyHAu3KHOQI3N4K'
@@ -25,7 +24,7 @@ function printToScreen(json) {
 function formatRequest(api_key, choiceOfState, maxNumResults) {
     let params = {
         api_key: api_key,
-        stateCode: choiceOfState,
+        stateCode: '[' + choiceOfState + ']',
         limit: maxNumResults
     };
     console.log(params);
@@ -52,21 +51,6 @@ function fetchParks(choiceOfState, maxNumResults) {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
     });
 };
-/*
-    fetch(url)
-        .then(response => {
-            if (response.ok) {
-                const jsonR = response.Json();
-                return jsonR;
-            }
-            throw new Error (response.statusText)
-        })
-        .then(json => printToScreen(jsonR))
-        .catch(error => alert( error))
-};
-*/
-
-
 
 function watchForm() {
     $('.state-choice').on('submit', function(event) {
@@ -78,6 +62,5 @@ function watchForm() {
     });
 
 };
-
 
 $(watchForm(), console.log('program running smoothly'));
